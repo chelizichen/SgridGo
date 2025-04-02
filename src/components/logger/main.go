@@ -24,7 +24,7 @@ func CreateLogger(logName string) *logrus.Logger {
 		return logger
 	}
 	logPath := filepath.Join(SGRID_LOG_DIR, fmt.Sprintf("%s.log", logName))
-
+	fmt.Println(logPath)
 	// 配置日志轮转
 	writer, _ := rotatelogs.New(
 		logPath+".%Y%m%d",

@@ -1,0 +1,46 @@
+import { exit } from "std/env"
+
+let server_name = "SgridGoServer"
+
+fun build_to_server(){
+    echo "Building to server"
+    $ rm -r ./app $ failed {
+        echo "app is not exist, ignore"
+    }
+    $ GOOS=linux GOARCH=amd64  go build -o {server_name} $ failed {
+        echo "Failed to build server"
+        exit(1)
+    }
+}
+
+fun tar(){
+    echo "Tar to dist"
+    $ rm -r ./{server_name}.tar.gz  $ failed {
+        echo "{server_name}.tar.gz is not exist, ignore"
+    }
+
+    $ tar -cvf {server_name}.tar.gz ./{server_name} $ failed {
+        echo "Failed to tar"
+        exit(1)
+    }
+    
+    $ rm -r ./{server_name}  $ failed {
+        echo "{server_name} is not exist, ignore"
+    }
+    echo "Tar Success"
+}
+
+fun clean(){
+    echo "Clean"
+    $ rm -r ./app $ failed {
+        echo "app is not exist, ignore"
+    }
+}
+
+build_to_server()
+
+tar()
+
+clean()
+
+echo "Done"
