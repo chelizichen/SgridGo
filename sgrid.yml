@@ -1,0 +1,11 @@
+server:
+  name: TailwindSaaSBackEnd
+  host: 127.0.0.1
+  port: 14232
+  protoccol: http
+  language: go
+config:
+  db: root:123456@tcp(127.0.0.1:3306)/high_frequency?charset=utf8&parseTime=true
+  redis_addr: 127.0.0.1:6379
+  redis_pass: ""
+
